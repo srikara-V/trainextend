@@ -3,17 +3,22 @@ name: TrainExtend CI
 on:
   push:
     paths:
-      - "app/**"
+      - "trainextend/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.py"
+      - ".github/workflows/**"
   pull_request:
     paths:
-      - "app/**"
+      - "trainextend/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.py"
+      - ".github/workflows/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: app
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
