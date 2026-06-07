@@ -2,9 +2,9 @@
 
 A resumable experiment runner for rolling-window time-series forecasting backtests.
 
-TrainExtend is an **experiment control plane**, not a forecasting library. You describe a backtest in YAML; it expands that into one training job per cutoff, runs a PyTorch MLP forecaster on each job, checkpoints progress, evaluates holdout forecasts, and aggregates horizon metrics across cutoffs.
+TrainExtend is an **experiment control plane**. You describe a backtest in YAML; it expands that into one training job per cutoff, runs a PyTorch MLP forecaster on each job, checkpoints progress, evaluates holdout forecasts, and aggregates horizon metrics across cutoffs.
 
-## What it does
+## Functionality
 
 1. **Accepts an experiment config** with dataset, model, backtest cutoffs, metrics, and runtime settings.
 2. **Expands the experiment into jobs** — one job per backtest cutoff.
@@ -17,12 +17,6 @@ TrainExtend is an **experiment control plane**, not a forecasting library. You d
 Datasets: built-in synthetic series, or a CSV path with `target` and `time_col` columns.
 
 Workers: a local background thread pool, or Modal GPU workers (T4 by default) with a shared Modal Volume.
-
-## What it is not
-
-- Not a replacement for Darts, GluonTS, or NeuralForecast.
-- Not a general ML experiment tracker (no UI, no hyperparameter search, no model zoo).
-- The forecaster is a small MLP included for end-to-end demos and tests.
 
 ## Architecture
 
@@ -210,4 +204,4 @@ pip install -e ".[dev]"
 pytest -q
 ```
 
-Coverage includes experiment expansion, checkpoint round-trips, job state transitions, forecast metrics, end-to-end submit/compare, and Modal backend routing (mocked).
+This was done as an effort to create a generalizable lightweight training infra, where I originally used a similar approach for evaluating [HNMD-based loss function for time-series forecasting models](https://github.com/srikara-V/Hierarchical-NURBS-Inspired-Multi-Domain-Loss-for-Training-Deep-Time-Series-Forecasting-Models) and running evals for the Yale Graph and Geometric Learning Lab.
