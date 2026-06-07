@@ -204,4 +204,6 @@ pip install -e ".[dev]"
 pytest -q
 ```
 
+## Inspiration
+
 This was done as an effort to create a generalizable lightweight training infra, where I originally used a similar approach for evaluating [HNMD-based loss function for time-series forecasting models](https://github.com/srikara-V/Hierarchical-NURBS-Inspired-Multi-Domain-Loss-for-Training-Deep-Time-Series-Forecasting-Models) and running evals for the Yale Graph and Geometric Learning Lab.
