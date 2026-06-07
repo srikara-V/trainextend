@@ -1,0 +1,6 @@
+{
+  "final_loss": 0.0014336707536131144,
+  "global_step": 1000,
+  "epochs_run": 62,
+  "resumed_from_step": 300
+}

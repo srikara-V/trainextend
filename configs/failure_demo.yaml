@@ -1,0 +1,11 @@
+name: failure_demo
+dataset: synthetic
+gpu_type: cpu
+use_gpu: false
+max_steps: 1000
+max_epochs: 100
+batch_size: 32
+learning_rate: 0.001
+checkpoint_every_steps: 100
+resume: true
+simulate_failure_at_step: 350

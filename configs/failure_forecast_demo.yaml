@@ -1,0 +1,29 @@
+experiment_name: failure_forecast_demo
+
+dataset:
+  name: synthetic
+  target: value
+
+model:
+  name: MLP
+  context_length: 96
+  prediction_length: 24
+
+backtest:
+  cutoffs:
+    - "4500"
+
+metrics:
+  - mse
+  - mae
+  - smape
+
+runtime:
+  gpu: cpu
+  use_gpu: false
+  max_steps: 400
+  max_epochs: 50
+  batch_size: 32
+  checkpoint_every_steps: 100
+  resume: true
+  simulate_failure_at_step: 250

@@ -1,0 +1,29 @@
+experiment_name: synthetic_mlp_gpu
+
+dataset:
+  name: synthetic
+
+model:
+  name: MLP
+  context_length: 96
+  prediction_length: 24
+
+backtest:
+  cutoffs:
+    - "4000"
+    - "4200"
+    - "4400"
+
+metrics:
+  - mse
+  - mae
+  - smape
+
+runtime:
+  gpu: T4
+  use_gpu: true
+  max_steps: 300
+  max_epochs: 30
+  batch_size: 64
+  checkpoint_every_steps: 100
+  resume: true

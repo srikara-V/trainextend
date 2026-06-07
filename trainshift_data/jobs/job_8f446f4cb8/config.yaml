@@ -1,0 +1,11 @@
+batch_size: 32
+checkpoint_every_steps: 50
+dataset: synthetic
+gpu_type: cpu
+learning_rate: 0.001
+max_epochs: 50
+max_steps: 200
+name: demo_cpu
+resume: true
+simulate_failure_at_step: null
+use_gpu: false

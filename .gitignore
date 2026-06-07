@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+trainextend_data/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.env

@@ -1,0 +1,10 @@
+name: demo_cpu
+dataset: synthetic
+gpu_type: cpu
+use_gpu: false
+max_steps: 200
+max_epochs: 50
+batch_size: 32
+learning_rate: 0.001
+checkpoint_every_steps: 50
+resume: true

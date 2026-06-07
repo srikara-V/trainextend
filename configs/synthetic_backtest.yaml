@@ -1,0 +1,33 @@
+experiment_name: synthetic_mlp_demo
+
+dataset:
+  name: synthetic
+  target: value
+  freq: H
+  time_col: date
+
+model:
+  name: MLP
+  context_length: 96
+  prediction_length: 24
+
+backtest:
+  cutoffs:
+    - "4000"
+    - "4200"
+    - "4400"
+
+metrics:
+  - mse
+  - mae
+  - smape
+
+runtime:
+  gpu: cpu
+  use_gpu: false
+  max_steps: 200
+  max_epochs: 20
+  batch_size: 32
+  learning_rate: 0.001
+  checkpoint_every_steps: 50
+  resume: true

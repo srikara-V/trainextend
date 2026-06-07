@@ -1,0 +1,7 @@
+{"t":"2026-06-07T00:20:28.652533Z","job_id":"job_8f446f4cb8","event":"submitted","worker_id":null,"payload":{"config":{"name":"demo_cpu","dataset":"synthetic","gpu_type":"cpu","max_steps":200,"max_epochs":50,"batch_size":32,"learning_rate":0.001,"checkpoint_every_steps":50,"resume":true,"simulate_failure_at_step":null,"use_gpu":false}}}
+{"t":"2026-06-07T00:20:30.059718Z","job_id":"job_8f446f4cb8","event":"worker_started","worker_id":"local_769b4aaa","payload":{"device":"cpu"}}
+{"t":"2026-06-07T00:20:30.281340Z","job_id":"job_8f446f4cb8","event":"checkpoint_saved","worker_id":"local_769b4aaa","payload":{"step":50,"path":"trainshift_data/jobs/job_8f446f4cb8/checkpoints/step_000050.pt"}}
+{"t":"2026-06-07T00:20:30.489004Z","job_id":"job_8f446f4cb8","event":"checkpoint_saved","worker_id":"local_769b4aaa","payload":{"step":100,"path":"trainshift_data/jobs/job_8f446f4cb8/checkpoints/step_000100.pt"}}
+{"t":"2026-06-07T00:20:30.692759Z","job_id":"job_8f446f4cb8","event":"checkpoint_saved","worker_id":"local_769b4aaa","payload":{"step":150,"path":"trainshift_data/jobs/job_8f446f4cb8/checkpoints/step_000150.pt"}}
+{"t":"2026-06-07T00:20:30.909376Z","job_id":"job_8f446f4cb8","event":"checkpoint_saved","worker_id":"local_769b4aaa","payload":{"step":200,"path":"trainshift_data/jobs/job_8f446f4cb8/checkpoints/step_000200.pt"}}
+{"t":"2026-06-07T00:20:30.910974Z","job_id":"job_8f446f4cb8","event":"completed","worker_id":"local_769b4aaa","payload":{"final_loss":0.4878388047218323,"global_step":200,"epochs_run":13,"resumed_from_step":0}}

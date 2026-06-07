@@ -1,0 +1,3 @@
+{"t":"2026-06-07T00:17:02.233158Z","job_id":"job_ec92c872f6","event":"submitted","worker_id":null,"payload":{"config":{"name":"demo_cpu","dataset":"synthetic","gpu_type":"cpu","max_steps":500,"max_epochs":5,"batch_size":32,"learning_rate":0.001,"checkpoint_every_steps":100,"resume":true,"simulate_failure_at_step":null,"use_gpu":false}}}
+{"t":"2026-06-07T00:17:04.562760Z","job_id":"job_ec92c872f6","event":"worker_started","worker_id":"local_dfe96bb4","payload":{"device":"cpu"}}
+{"t":"2026-06-07T00:17:04.981102Z","job_id":"job_ec92c872f6","event":"completed","worker_id":"local_dfe96bb4","payload":{"final_loss":2.2362654209136963,"global_step":80,"epochs_run":5,"resumed_from_step":0}}
