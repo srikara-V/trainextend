@@ -29,10 +29,13 @@ def serve(
     port: int = typer.Option(8000, help="Bind port"),
     data_dir: Path = typer.Option(Path("./trainextend_data"), help="Volume / data root"),
     backend: str = typer.Option("local", help="local or modal"),
+    max_workers: int = typer.Option(0, help="Local worker threads (0 = auto)"),
 ):
     """Start the FastAPI control plane."""
     os.environ["TRAINEXTEND_DATA_DIR"] = str(data_dir)
     os.environ["TRAINEXTEND_BACKEND"] = backend
+    if max_workers:
+        os.environ["TRAINEXTEND_MAX_WORKERS"] = str(max_workers)
     import uvicorn
 
     uvicorn.run("trainextend.api:app", host=host, port=port, reload=False)

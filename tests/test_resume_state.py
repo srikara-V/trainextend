@@ -19,7 +19,10 @@ def client(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
 
     api_mod.settings = api_mod.Settings()
     api_mod.store = JobStore(api_mod.settings.data_dir)
-    api_mod.pool = api_mod.LocalWorkerPool(api_mod.store)
+    api_mod.pool = api_mod.LocalWorkerPool(
+        api_mod.store,
+        max_workers=api_mod.settings.max_workers or None,
+    )
     api_mod.pool.start()
 
     yield TestClient(api_mod.app)

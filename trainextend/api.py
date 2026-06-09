@@ -37,11 +37,15 @@ class Settings(BaseSettings):
     data_dir: Path = Path("./trainextend_data")
     backend: str = "local"  # local | modal
     modal_app: str = "trainextend"
+    max_workers: int = 0  # 0 = auto (min(4, cpu_count))
 
 
 settings = Settings()
 store = JobStore(settings.data_dir)
-pool = LocalWorkerPool(store)
+pool = LocalWorkerPool(
+    store,
+    max_workers=settings.max_workers or None,
+)
 
 
 def _use_modal() -> bool:
@@ -66,6 +70,7 @@ async def lifespan(_: FastAPI):
             )
     else:
         pool.start()
+        logger.info("Local worker pool started (max_workers=%s)", pool.max_workers)
     yield
     if not _use_modal():
         pool.stop()
@@ -278,6 +283,7 @@ def health():
         "version": __version__,
         "backend": settings.backend,
         "modal_app": settings.modal_app if _use_modal() else None,
+        "max_workers": pool.max_workers if not _use_modal() else None,
     }
 
 
