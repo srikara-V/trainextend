@@ -1,15 +1,15 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable
 
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
 from trainextend.checkpointing import load_checkpoint, mark_last_good, save_checkpoint
-from trainextend.paths import artifacts_dir, checkpoints_dir, metrics_path
+from trainextend.paths import checkpoints_dir, metrics_path
 from trainextend.schemas import JobStatus, TrainingConfig
 from trainextend.state import JobStore
 from trainextend.training.demo_model import TinyCNN
@@ -34,7 +34,8 @@ def _build_dataloader(config: TrainingConfig) -> DataLoader:
     from torchvision import datasets, transforms
 
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
-    ds = datasets.MNIST(root=str(Path.home() / ".trainextend" / "mnist"), train=True, download=True, transform=transform)
+    root = str(Path.home() / ".trainextend" / "mnist")
+    ds = datasets.MNIST(root=root, train=True, download=True, transform=transform)
     return DataLoader(ds, batch_size=config.batch_size, shuffle=True, num_workers=0)
 
 
@@ -50,6 +51,7 @@ def run_training_job(
     def _notify() -> None:
         if on_state_change is not None:
             on_state_change()
+
     record = store.get_job(job_id)
     if record is None:
         raise KeyError(job_id)

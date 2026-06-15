@@ -3,10 +3,10 @@ from __future__ import annotations
 import json
 import sqlite3
 import uuid
+from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
-from typing import Iterator
 
 import yaml
 
@@ -246,9 +246,7 @@ class JobStore:
 
     def get_experiment(self, experiment_id: str) -> ExperimentRecord | None:
         with self._conn() as conn:
-            row = conn.execute(
-                "SELECT * FROM experiments WHERE experiment_id = ?", (experiment_id,)
-            ).fetchone()
+            row = conn.execute("SELECT * FROM experiments WHERE experiment_id = ?", (experiment_id,)).fetchone()
         if row is None:
             return None
         exp = self._row_to_experiment(row)
@@ -379,9 +377,7 @@ class JobStore:
 
     def pending_failure(self, job_id: str) -> bool:
         with self._conn() as conn:
-            row = conn.execute(
-                "SELECT pending_failure FROM jobs WHERE job_id = ?", (job_id,)
-            ).fetchone()
+            row = conn.execute("SELECT pending_failure FROM jobs WHERE job_id = ?", (job_id,)).fetchone()
         return bool(row and row["pending_failure"])
 
     def clear_pending_failure(self, job_id: str) -> None:

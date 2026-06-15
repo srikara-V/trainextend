@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 from trainextend.paths import metrics_path
 from trainextend.schemas import CompareResponse, CompareRow, ExperimentRecord, JobStatus

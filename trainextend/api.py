@@ -64,8 +64,7 @@ async def lifespan(_: FastAPI):
             logger.info("Modal backend ready (app=%s)", settings.modal_app)
         except Exception as exc:
             logger.warning(
-                "Modal backend selected but app may not be deployed: %s. "
-                "Run: modal deploy trainextend/modal_app.py",
+                "Modal backend selected but app may not be deployed: %s. Run: modal deploy trainextend/modal_app.py",
                 exc,
             )
     else:

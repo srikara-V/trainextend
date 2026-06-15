@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from enum import Enum
+from datetime import UTC, datetime
+from enum import StrEnum
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
 
-class JobStatus(str, Enum):
+class JobStatus(StrEnum):
     QUEUED = "queued"
     RUNNING = "running"
     CHECKPOINTING = "checkpointing"
@@ -18,7 +18,7 @@ class JobStatus(str, Enum):
     CANCELLED = "cancelled"
 
 
-class ExperimentStatus(str, Enum):
+class ExperimentStatus(StrEnum):
     QUEUED = "queued"
     RUNNING = "running"
     COMPLETED = "completed"
@@ -180,4 +180,4 @@ class CompareResponse(BaseModel):
 
 
 def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)

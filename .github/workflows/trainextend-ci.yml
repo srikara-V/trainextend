@@ -1,28 +1,35 @@
-name: TrainExtend CI
+name: CI
 
 on:
   push:
-    paths:
-      - "trainextend/**"
-      - "tests/**"
-      - "pyproject.toml"
-      - "setup.py"
-      - ".github/workflows/**"
+    branches: [main]
   pull_request:
-    paths:
-      - "trainextend/**"
-      - "tests/**"
-      - "pyproject.toml"
-      - "setup.py"
-      - ".github/workflows/**"
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check trainextend tests
+      - run: ruff format --check trainextend tests
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      # CPU-only torch wheels: much smaller download than the default CUDA build.
+      - run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
       - run: pip install -e ".[dev]"
       - run: pytest -q

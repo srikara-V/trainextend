@@ -53,18 +53,15 @@ def modal_api_client(tmp_path, monkeypatch):
 
         return list_checkpoints(checkpoints_dir(tmp_path, job_id))
 
-    with patch.object(modal_client_mod, "check_modal_deployed"), patch.object(
-        modal_client_mod, "create_job", side_effect=mock_create
-    ), patch.object(modal_client_mod, "get_job", side_effect=mock_get), patch.object(
-        modal_client_mod, "resume_job", side_effect=mock_resume
-    ), patch.object(
-        modal_client_mod, "cancel_job", side_effect=mock_cancel
-    ), patch.object(
-        modal_client_mod, "simulate_failure", side_effect=mock_simulate
-    ), patch.object(
-        modal_client_mod, "list_events", side_effect=mock_events
-    ), patch.object(
-        modal_client_mod, "list_checkpoints", side_effect=mock_checkpoints
+    with (
+        patch.object(modal_client_mod, "check_modal_deployed"),
+        patch.object(modal_client_mod, "create_job", side_effect=mock_create),
+        patch.object(modal_client_mod, "get_job", side_effect=mock_get),
+        patch.object(modal_client_mod, "resume_job", side_effect=mock_resume),
+        patch.object(modal_client_mod, "cancel_job", side_effect=mock_cancel),
+        patch.object(modal_client_mod, "simulate_failure", side_effect=mock_simulate),
+        patch.object(modal_client_mod, "list_events", side_effect=mock_events),
+        patch.object(modal_client_mod, "list_checkpoints", side_effect=mock_checkpoints),
     ):
         import trainextend.api as api_mod
 

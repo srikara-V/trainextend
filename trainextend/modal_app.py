@@ -221,4 +221,3 @@ def main(job_id: str = "", resume: bool = False):
         print("Deploy first: modal deploy trainextend/modal_app.py")
         return
     print(train_job.remote(job_id, resume=resume))
-
